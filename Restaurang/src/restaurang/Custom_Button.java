@@ -11,18 +11,27 @@ public class Custom_Button extends JButton{
 	private static final long serialVersionUID = 1L;
 	private Graphics2D g2d;
 	private Dimension size;
+	private Color colorVerm;
+	private Color colorGreen;
 	private Color color;
+	private int width;
+	private int height;
+	private boolean bokad;
+	private int antalPlatser;
 	public Custom_Button(String label) {
 		super(label);
-		color = Color.magenta;
+		colorVerm = new Color(213, 94, 0);
+		colorGreen = new Color(0,158,115);
+		color = colorGreen;
 		enableInputMethods(true);
-		size = new Dimension(100,100);
-		size.width = size.height;
+		size = new Dimension(80,80);
 		setPreferredSize(size);
 		setContentAreaFilled(false);
 		setOpaque(false);
 		setFocusPainted(false);
 		setBorderPainted(false);
+		width = size.width;
+		height = size.height;
 		
 	}
 	
@@ -34,11 +43,11 @@ public class Custom_Button extends JButton{
 		//Använder origianlstorleken för en JButton
         //int x = ogSize.width + gap;
         //int y = gap;
-        int diameter = size.width;
+        
         g2d.setColor(color);
-        g2d.fillOval(0, 0, diameter, diameter);
+        g2d.fillOval(0, 0, this.width, this.height);
         g2d.setColor(Color.white);
-        g2d.drawString(super.getText(), diameter/2, diameter/2);
+        g2d.drawString(super.getText(), this.width/2, this.height/2);
 	}
 	
 	@Override
@@ -53,13 +62,33 @@ public class Custom_Button extends JButton{
 	public Dimension getMaximumSize() {
 		return super.getMaximumSize();
 	}
-	public void changeColor(Color c) {
-		if(this.color != c)
-			this.color = c;
+	public void changeColor() {
+		if(this.color == colorVerm)
+			this.color = colorGreen;
 		else 
-			this.color = Color.magenta;
+			this.color = colorVerm;
 		repaint();
 	}
-	
+	public int getWidth() {
+		return this.width;
+	}
+	public int getHeight() {
+		return this.width;
+	}
+	public boolean getBokad() {
+		return this.bokad;
+	}
+	public void setBokad() {
+		if(this.bokad)
+			this.bokad = false;
+		else 
+			this.bokad = true;
+	}
+	public void setAntalPlatser(int platser) {
+		this.antalPlatser = platser;
+	}
+	public int getAntalPlatser() {
+		return this.antalPlatser;
+	}
 }
 
